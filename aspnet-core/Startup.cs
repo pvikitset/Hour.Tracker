@@ -10,11 +10,16 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Hour.Tracker.Backend
 {
     public class Startup
     {
+       // private readonly IConfigurationRoot _appConfiguration;
+
+       // private readonly IHostingEnvironment _hostingEnvironment;
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -25,7 +30,13 @@ namespace Hour.Tracker.Backend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "Hour Tracker API", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,6 +50,12 @@ namespace Hour.Tracker.Backend
             {
                 app.UseHsts();
             }
+            
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint(Configuration["App:SwaggerEndPoint"], "Hour Tracker API V1");
+            });
 
             app.UseHttpsRedirection();
             app.UseMvc();
