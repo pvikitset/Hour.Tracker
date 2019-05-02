@@ -16,9 +16,7 @@ namespace Hour.Tracker.Backend
 {
     public class Startup
     {
-       // private readonly IConfigurationRoot _appConfiguration;
-
-       // private readonly IHostingEnvironment _hostingEnvironment;
+        private const string DefaultCorsPolicyName = "Cors";
 
         public Startup(IConfiguration configuration)
         {
@@ -30,6 +28,19 @@ namespace Hour.Tracker.Backend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Configure CORS for angular2 UI
+            services.AddCors(options =>
+            {
+                options.AddPolicy(DefaultCorsPolicyName, builder =>
+                {
+                    //App:CorsOrigins in appsettings.json can contain more than one address with splitted by comma.
+                    builder
+                        .AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowCredentials();
+                });
+            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
@@ -50,7 +61,8 @@ namespace Hour.Tracker.Backend
             {
                 app.UseHsts();
             }
-            
+
+            app.UseCors(DefaultCorsPolicyName); //Enable CORS!
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {

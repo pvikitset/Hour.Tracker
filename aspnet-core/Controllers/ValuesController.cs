@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Hour.Tracker.Backend.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hour.Tracker.Backend.Controllers
@@ -12,10 +13,31 @@ namespace Hour.Tracker.Backend.Controllers
     {
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<List<Entry>> Get()
+        {
+            var list = new List<Entry>();
+            list.Add(new Entry() { Id = 1, Name = "Lilly", Num = 0215 });
+            list.Add(new Entry() { Id = 2, Name = "Lucy", Num = 2545 });
+            return list;
+        }
+
+        [HttpGet("{entry}")]
+        public ActionResult<IEnumerable<string>> Get(Entry garou)
         {
             return new string[] { "value1", "value2" };
         }
+
+
+
+        //[HttpGet]
+        //public IEnumerable<Entry> GetAll()
+        //{
+        //    var list = new List<Entry>();
+        //    list.Add(new Entry() { Id = 1 , Name = "Lilly", Num = 0215 });
+        //    list.Add(new Entry() { Id = 2, Name = "Lucy", Num = 2545 });
+        //    return list;
+        //}
+
 
         // GET api/values/5
         [HttpGet("{id}")]
@@ -26,8 +48,9 @@ namespace Hour.Tracker.Backend.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult<Entry> Post([FromBody] List<Entry> values, int thisisnum)
         {
+            return new Entry() {Id = 5, Name="Moo",Num= 256 };
         }
 
         // PUT api/values/5
@@ -40,6 +63,16 @@ namespace Hour.Tracker.Backend.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+        }
+    }
+
+    [Route("api/book")]
+    public class Book 
+    {
+        [HttpGet]
+        public ActionResult<IEnumerable<string>> Get(Entry garou)
+        {
+            return new string[] { "value1", "value2" };
         }
     }
 }
