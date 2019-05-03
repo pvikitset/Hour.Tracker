@@ -6,14 +6,17 @@
     <Compile Remove="dist\**" />
     <Compile Remove="external_libs\**" />
     <Compile Remove="node_modules\**" />
+    <Compile Remove="src\app\main\**" />
     <Compile Remove="src\assets\common\scripts\**" />
     <EmbeddedResource Remove="dist\**" />
     <EmbeddedResource Remove="external_libs\**" />
     <EmbeddedResource Remove="node_modules\**" />
+    <EmbeddedResource Remove="src\app\main\**" />
     <EmbeddedResource Remove="src\assets\common\scripts\**" />
     <None Remove="dist\**" />
     <None Remove="external_libs\**" />
     <None Remove="node_modules\**" />
+    <None Remove="src\app\main\**" />
     <None Remove="src\assets\common\scripts\**" />
   </ItemGroup>
   <ItemGroup>
@@ -21,8 +24,5 @@
     <None Remove=".gitignore" />
     <None Remove="npm-shrinkwrap.json" />
     <None Remove="yarn.lock" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="src\app\main\sales\" />
   </ItemGroup>
 </Project>

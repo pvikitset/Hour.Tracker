@@ -1,0 +1,16 @@
+<div class="col-md-12">
+  <p-panel header="Menu" [toggleable]="true" [style]="{'margin-bottom':'20px', 'margin-top':'20px'}">
+    <div class="col-sm-4">
+      <h2>Start</h2>
+      <p-calendar [(ngModel)]="startTime" [showTime]="true"></p-calendar>
+    </div>
+    <div class="col-sm-4">
+      <h2>End</h2>
+      <p-calendar [(ngModel)]="endTime" [showTime]="true"></p-calendar>
+    </div>
+
+    <div class="col-sm-4">
+      <button pButton type="button" label="Add" class="ui-button-rounded"></button>
+    </div>
+  </p-panel>
+</div>
