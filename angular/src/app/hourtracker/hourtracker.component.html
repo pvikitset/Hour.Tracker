@@ -1,16 +1,36 @@
 <div class="col-md-12">
   <p-panel header="Menu" [toggleable]="true" [style]="{'margin-bottom':'20px', 'margin-top':'20px'}">
-    <div class="col-sm-4">
-      <h2>Start</h2>
-      <p-calendar [(ngModel)]="startTime" [showTime]="true"></p-calendar>
-    </div>
-    <div class="col-sm-4">
-      <h2>End</h2>
-      <p-calendar [(ngModel)]="endTime" [showTime]="true"></p-calendar>
+    
+
+    <div class="ui-g ui-fluid">
+      <div class="ui-g-12 ui-md-4">
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon">Start</span>
+          <p-calendar [(ngModel)]="startTime" [showTime]="true" (click)="computeDuration()"></p-calendar>
+          <!--<input type="text" pInputText placeholder="Username">-->
+        </div>
+      </div>
+
+      <div class="ui-g-12 ui-md-4">
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon">End</span>
+          <!--<input type="text" pInputText placeholder="Price">-->
+          <p-calendar [(ngModel)]="endTime" [showTime]="true" (click)="computeDuration()"></p-calendar>
+        </div>
+      </div>
+
+      <div class="ui-g-12 ui-md-4">
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon">Duration</span>
+          <input [(ngModel)]="durationText" type="text" pInputText placeholder="? hours ? minutes" disabled>
+        </div>
+      </div>
     </div>
 
     <div class="col-sm-4">
-      <button pButton type="button" label="Add" class="ui-button-rounded"></button>
+      <button pButton type="button" label="Add" class="ui-button-rounded" (click)="handleAdd($event)"></button>
     </div>
   </p-panel>
 </div>
+
+<entryTable #entryTable (refreshEvent)="refresh($event)"></entryTable>

@@ -1,8 +1,12 @@
+import { Duration } from './duration';
+
 export class Entry /*implements IEntry*/ {
 
   id!: number | undefined;
-  name!: string | undefined;
-  num!: number | undefined;
+  startTime!: Date | undefined;
+  endTime!: Date | undefined;
+  duration!: Duration | undefined;
+
   /*
     constructor(data?: IEntry) {
       if (data) {
