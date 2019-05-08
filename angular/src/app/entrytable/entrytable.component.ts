@@ -9,19 +9,21 @@ import { Entry } from '../shared/entry';
 export class EntrytableComponent implements OnInit {
 
   entries: Entry[] = [];
-
+  cols: any[];
   @Output() refreshEvent: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() { }
 
   ngOnInit() {
+    this.cols = [
+      { field: 'id', header: 'Id' },
+      { field: 'startTime', header: 'Start Time' },
+      { field: 'endTime', header: 'End Time' },
+      { field: 'duration', header: 'Duration' }
+    ];
   }
-
-
   add(e: Entry) {
-    //console.log(e)
-
-
+    this.entries.push(e);
     this.refreshEvent.emit(e);
   }
 

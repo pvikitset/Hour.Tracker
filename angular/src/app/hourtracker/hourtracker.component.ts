@@ -18,7 +18,7 @@ export class HourtrackerComponent implements OnInit {
   endTime: Date 
   duration: Duration = new Duration;
   durationText: string
-
+  counter: number = 0;
 
 
 
@@ -36,7 +36,8 @@ export class HourtrackerComponent implements OnInit {
     entry.startTime = this.startTime
     entry.endTime = this.endTime
     entry.duration = this.duration
-
+    entry.id = this.counter + 1;
+    this.counter++;
     this.entryTable.add(entry)
     //this.refresh()
   }
@@ -45,7 +46,7 @@ export class HourtrackerComponent implements OnInit {
     console.log(e)
     this.startTime = undefined
     this.endTime = undefined
-    this.duration = undefined
+    this.duration = new Duration;
     this.durationText = ""
   }
 
@@ -71,7 +72,7 @@ export class HourtrackerComponent implements OnInit {
 
     }
 
-    this.durationText = this.duration.hour + this.getHour() + this.duration.minute + this.getMinute()
+    this.duration.text = this.duration.hour + this.getHour() + this.duration.minute + this.getMinute()
   }
 
   getHour(): string {

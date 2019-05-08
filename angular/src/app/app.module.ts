@@ -15,6 +15,7 @@ import { PanelModule } from 'primeng/panel';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
 import { FormsModule } from '@angular/forms';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { FormsModule } from '@angular/forms';
     PanelModule,
     ButtonModule,
     CalendarModule,
-    FormsModule
+    FormsModule,
+    TableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
